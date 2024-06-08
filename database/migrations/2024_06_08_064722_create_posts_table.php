@@ -15,7 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('title');
-            $table->string('author');
+            $table->foreignId('author_id')->constrained(
+                table:'users',
+                indexName:'posts_user_id'
+            );
+            $table->foreignId('category_id')->constrained(
+                table:'categories',
+                indexName:'posts_category_id'
+            ); 
             $table->text('body');
             $table->timestamps();
         });
