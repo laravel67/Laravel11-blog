@@ -16,12 +16,13 @@ Route::get('/about', function () {
     return view('about', compact('title'));
 })->name('about');
 
-Route::get('/posts', function (){
-    $posts=Post::orderBy('id', 'desc')->get();
-    $title= 'All Posts';
-    return view('posts', compact('posts', 'title'));
-})->name('blog');
 
+Route::get('/posts', function () {
+    $filters = request()->only(['search', 'category', 'author']);;  // Collect filters from request
+    $posts = Post::filter($filters)->orderBy('id', 'desc')->get();  // Pass filters to scopeFilter method
+    $title = 'All Posts';
+    return view('posts', compact('posts', 'title'));
+})->name('posts');
 
 Route::get('/post/{slug}', function ($slug) {
     $title = 'Detail Post';
@@ -30,17 +31,17 @@ Route::get('/post/{slug}', function ($slug) {
     return view('post', compact('post', 'title'));
 })->name('post');
 
-Route::get('/posts/author/{user}', function (User $user){
-    $title = 'Posts By: '.$user->name;
-    $posts= $user->posts;
-    return view('posts', compact('posts', 'title'));
-})->name('author');
+// Route::get('/posts/author/{user}', function (User $user) {
+//     $title = 'Posts By: ' . $user->name;
+//     $posts = $user->posts;
+//     return view('posts', compact('posts', 'title'));
+// })->name('author');
 
-Route::get('/posts/category/{category}', function (Category $category){
-    $title = 'Posts in Category: '.$category->name;
-    $posts= $category->posts;
-    return view('posts', compact('posts', 'title'));
-})->name('category');
+// Route::get('/posts/category/{category}', function (Category $category) {
+//     $title = 'Posts in Category: ' . $category->name;
+//     $posts = $category->posts;
+//     return view('posts', compact('posts', 'title'));
+// })->name('category');
 
 
 // Route::get('/posts', function () {

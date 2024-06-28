@@ -9,7 +9,7 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <x-nav-link-desktop href="{{ route('home') }}" :active="request()->routeIs('home')" >Home</x-nav-link-desktop>
-                        <x-nav-link-desktop href="{{ route('blog') }}" :active="request()->routeIs('blog')">Blog</x-nav-link-desktop>
+                        <x-nav-link-desktop href="{{ route('posts') }}" :active="request()->routeIs('posts')">Blog</x-nav-link-desktop>
                         <x-nav-link-desktop href="{{ route('about') }}" :active="request()->routeIs('about')">About</x-nav-link-desktop>
                         <x-nav-link-desktop href="{{ route('contact') }}" :active="request()->routeIs('contact')">Contact</x-nav-link-desktop>
                     </div>
@@ -74,7 +74,7 @@
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <x-nav-link-mobile href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-nav-link-mobile>
-            <x-nav-link-mobile href="{{ route('blog') }}" :active="request()->routeIs('blog')">Blog</x-nav-link-mobile>
+            <x-nav-link-mobile href="{{ route('posts') }}" :active="request()->routeIs('posts')">Blog</x-nav-link-mobile>
             <x-nav-link-mobile href="{{ route('about') }}" :active="request()->routeIs('about')">About</x-nav-link-mobile>
             <x-nav-link-mobile href="{{ route('contact') }}" :active="request()->routeIs('contact')">Contact</x-nav-link-mobile>
         </div>

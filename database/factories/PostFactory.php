@@ -19,12 +19,16 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $body = collect($this->faker->paragraphs(mt_rand(5, 10)))
+            ->map(fn ($p) => "<p>$p</p>")
+            ->implode("\n");
+
         return [
-            'title'=> fake()->sentence(),
-            'author_id'=> User::factory(),
-            'category_id'=> Category::factory(),
-            'slug'=>Str::slug(fake()->sentence()),
-            'body'=> fake()->text()
+            'title' => $this->faker->sentence(),
+            'slug' => Str::slug($this->faker->sentence()),
+            'body' => $body,
+            'author_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 }
