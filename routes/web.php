@@ -19,7 +19,7 @@ Route::get('/about', function () {
 
 Route::get('/posts', function () {
     $filters = request()->only(['search', 'category', 'author']);;  // Collect filters from request
-    $posts = Post::filter($filters)->orderBy('id', 'desc')->get();  // Pass filters to scopeFilter method
+    $posts = Post::filter($filters)->latest()->paginate(6)->withQueryString();  // Pass filters to scopeFilter method
     $title = 'All Posts';
     return view('posts', compact('posts', 'title'));
 })->name('posts');

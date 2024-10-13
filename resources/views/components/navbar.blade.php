@@ -69,8 +69,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <x-nav-link-mobile href="{{ route('home') }}" :active="request()->routeIs('home')">Home</x-nav-link-mobile>
